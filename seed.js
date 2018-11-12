@@ -1,3 +1,11 @@
 const db = require('./model.js');
 
-const status = db.sync({ force: true });
+
+db.sync({ force: true }).then(() => {
+  console.log('Database Synced!');
+  db.close();
+}).catch(function (err) {
+    console.error(err.message);
+    db.close();
+})
+
